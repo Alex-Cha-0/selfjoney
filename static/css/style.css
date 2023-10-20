@@ -274,3 +274,6 @@ img {
     margin-bottom: 1rem;
 }
 
+.comment-box {
+    display: none;
+}
