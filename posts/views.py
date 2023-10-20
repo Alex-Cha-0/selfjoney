@@ -4,20 +4,35 @@ from profiles.models import Profile
 from .forms import PostModelForm, CommentModelForm
 
 
+def create_post(request):
+    profile = Profile.objects.get(user=request.user)
+    form = PostModelForm(request.POST or None, request.FILES or None)
+    if request.method == 'POST':
+        instance = form.save(commit=False)
+        instance.author = profile
+        instance.save()
+        form = PostModelForm()
+
+    context = {
+        'form': form
+    }
+    return render(request, 'posts/create_post.html', context)
+
+
 def post_comment_create_and_list_view(request):
     qs = Post.objects.all()
     profile = Profile.objects.get(user=request.user)
 
-    p_form = PostModelForm()
+    # p_form = PostModelForm()
     c_form = CommentModelForm()
 
-    if 'submit_p_form' in request.POST:
-        p_form = PostModelForm(request.POST, request.FILES)
-        if p_form.is_valid():
-            instance = p_form.save(commit=False)
-            instance.author = profile
-            instance.save()
-            p_form = PostModelForm()
+    # if 'submit_p_form' in request.POST:
+    #     p_form = PostModelForm(request.POST, request.FILES)
+    #     if p_form.is_valid():
+    #         instance = p_form.save(commit=False)
+    #         instance.author = profile
+    #         instance.save()
+    #         p_form = PostModelForm()
 
     if 'submit_c_form' in request.POST:
         c_form = CommentModelForm(request.POST)
@@ -31,7 +46,7 @@ def post_comment_create_and_list_view(request):
     context = {
         'qs': qs,
         'profile': profile,
-        'p_form': p_form,
+        # 'p_form': p_form,
         'c_form': c_form,
     }
     return render(request, 'posts/main.html', context)
