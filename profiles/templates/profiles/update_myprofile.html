@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    update my profile
+{% endblock %}
+
+{% block content %}
+    <div class="row gutters">
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <div class="account-settings">
+                        <div class="user-profile">
+                            <div class="user-avatar">
+                                <img src="{{ profile.avatar.url }}" alt="{{ request.user }}">
+                            </div>
+                            <h5 class="user-name">{{ profile.get_full_name }}</h5>
+                            <h6 class="user-email">{{ profile.email }}</h6>
+                        </div>
+                        <div class="about">
+                            <h5>About</h5>
+                            <p>{{ profile.bio }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mb-2 text-primary">Personal Details</h6>
+                        </div>
+
+                        <!-- Form field -->
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <div class="row gutters">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="text-right">
+                                        <button type="button" name="Cancel" class="btn btn-secondary">Cancel
+                                        </button>
+                                        <button type="submit" id="submit" name="submit" class="btn btn-primary">Update
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
