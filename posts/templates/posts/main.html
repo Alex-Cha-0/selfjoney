@@ -18,7 +18,7 @@
                         <div class="flex-grow-1 ms-3">
                             <div class="d-flex mt-0 align-items-end"><a
                                     href="{% url 'profiles:my-profile-view' profile_id=obj.author.user.id %}"
-                                    class="mb-0 link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover">{{ obj.author.get_full_name }}</a>
+                                    class="mb-0 fw-semibold link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover">{{ obj.author.get_full_name }}</a>
                                 <div class="ml-1">&#183;</div>
                                 <small
                                         class="tx-11 text-muted mb-0 ml-1">{{ obj.updated|timesince|upto:',' }}&#46;</small>
@@ -90,8 +90,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <img class="img-fluid" src="{{ obj.image.url }}" alt="">
+                <div class="card-body p-0 ">
+                    <img class="img-fluid rounded-1" src="{{ obj.image.url }}" alt="">
 
                     <div class="d-flex post-actions">
                         <form action="{% url 'posts:like-post-view' %}" method="post">
@@ -152,7 +152,12 @@
                     </div>
                 </div>
                 <div class="card-footer border-top-0  border-bottom">
-                    <p>{{ obj.num_likes }} отметок "Нравится"</p>
+                    <span>{{ obj.num_likes }} отметок "Нравится"</span>
+                    <p>
+                        <a class="fw-semibold mb-0 link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                           href="{% url 'profiles:my-profile-view' profile_id=obj.author.user.id %}">{{ obj.author.get_full_name }}</a>
+                        <span>{{ obj.header }}</span>
+                    </p>
                     <p class="mb-3 tx-14">{{ obj.content }}</p>
                 </div>
             </div>
