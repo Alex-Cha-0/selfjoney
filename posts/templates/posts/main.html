@@ -25,6 +25,7 @@
                             </div>
                             <p class="">{{ obj.author.country }}</p>
                         </div>
+
                         <div class="dropdown">
                             <button class="btn p-0" type="button" id="dropdownMenuButton2"
                                     data-toggle="dropdown"
@@ -63,7 +64,8 @@
                                         <span>Update</span></button>
                                     <button class="dropdown-item d-flex align-items-center">
                                         <svg width="24px" height="24px" viewBox="-102.4 -102.4 1228.80 1228.80"
-                                             class="feather feather-meh icon-sm mr-2" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                             class="feather feather-meh icon-sm mr-2" version="1.1"
+                                             xmlns="http://www.w3.org/2000/svg"
                                              fill="#000000">
                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
@@ -153,29 +155,29 @@
                                     </svg>
                                 {% endif %}
                             </button>
-
-                            <button class="btn btn-link-secondary  btn-sm" type="button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         fill="none"
-                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                         stroke-linejoin="round"
-                                         class="feather feather-message-square icon-md">
-                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                                    </svg>
-
-                            </button>
-                            <button class="btn btn-link-secondary  btn-sm" type="button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         fill="none"
-                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                         stroke-linejoin="round"
-                                         class="feather feather-share icon-md">
-                                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
-                                        <polyline points="16 6 12 2 8 6"></polyline>
-                                        <line x1="12" y1="2" x2="12" y2="15"></line>
-                                    </svg>
-                            </button>
                         </form>
+                        <button class="cmt_btn btn btn-link-secondary  btn-sm" type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 class="feather feather-message-square icon-md">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+
+                        </button>
+                        <button class="btn btn-link-secondary  btn-sm" type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 class="feather feather-share icon-md">
+                                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                                <polyline points="16 6 12 2 8 6"></polyline>
+                                <line x1="12" y1="2" x2="12" y2="15"></line>
+                            </svg>
+                        </button>
+
                     </div>
                 </div>
                 <div class="card-footer border-top-0  border-bottom p-0">
@@ -231,3 +233,22 @@
 
 
 {% endblock %}
+
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            let display = false
+            $(".cmt_btn").click(function () {
+                if (display === false) {
+                    console.log("show")
+                    $(this).next(".comment-box").show("slow");
+                    display = true
+                } else {
+                    console.log("hide")
+                    $(this).next(".comment-box").hide("slow");
+                    display = false
+                }
+            });
+        });
+    </script>
+{% endblock scripts %}

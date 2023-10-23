@@ -46,7 +46,6 @@ class Profile(models.Model):
         posts = self.posts.all()
         total_liked = 0
         for item in posts:
-            print(item)
             total_liked += item.liked.all().count()
 
         return total_liked
