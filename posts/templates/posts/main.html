@@ -137,19 +137,15 @@
                 </div>
                 <div class="card-body p-0 ">
                     <img class="img-fluid rounded-1" src="{{ obj.image.url }}" alt="">
-
                     <div class="d-flex post-actions">
                         <form class="like-form" action="{% url 'posts:like-post-view' %}" method="post" id='{{obj.id}}'>
                             {% csrf_token %}
                             <input type="hidden" name="post_id" value="{{ obj.id }}">
                             <button class="like-btn{{obj.id}} btn-reaction btn text-center btn-link" type="submit" aria-label="Отправить реакцию «нравится»">
                                 {% if profile not in obj.liked.all %}
-
                                  <i></i>
                                  <span>Like</span>
-
                                 {% else %}
-
                                  <i class="press"></i>
                                  <span class="press">Unlike</span>
                                 {% endif %}
@@ -192,6 +188,7 @@
                     </p>
                     <p class="mb-3 tx-14">{{ obj.content }}</p>
                     <!-- Comment Form -->
+                 <button class="cmt_btn btn btn-link btn-small p-0 border-0 link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Показать комментарии</button>
                     <div class="comment-box">
                         {% if obj.comment_set.all %}
                             {% for c in obj.comment_set.all %}
@@ -237,67 +234,3 @@
 
 {% endblock %}
 
-{% block scripts %}
-     <script>
-         $( document ).ready(function() {
-            let display = false
-            $(".cmt_btn").click(function () {
-                if (display===false) {
-                    $(this).next(".comment-box").show("slow");
-                    display=true
-                } else {
-                    $(this).next(".comment-box").hide("slow");
-                    display=false
-                }
-            });
-
-            $('.like-form').submit(function(e){
-                e.preventDefault()
-
-                const post_id = $(this).attr('id')
-
-                const likeText = $(`.like-btn${post_id} > span`).text()
-                const trim = $.trim(likeText)
-
-                const url = $(this).attr('action')
-
-                let res;
-                const likes = $(`.like-count${post_id}`).text()
-                const trimCount = parseInt(likes)
-
-                console.log(trim)
-                console.log(likes)
-                console.log(trimCount)
-
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    data: {
-                        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
-                        'post_id':post_id,
-                    },
-                    success: function(response) {
-                        if(trim === 'Like') {
-                            $(`.like-btn${post_id} > i`).addClass("press");
-                            $(`.like-btn${post_id} > span`).addClass("press").text("Unlike");
-
-
-                            res = trimCount + 1
-                        } else {
-                            $(`.like-btn${post_id} > i`).removeClass("press");
-                            $(`.like-btn${post_id} > span`).removeClass("press").text("Like");
-
-                            res = trimCount - 1
-                        }
-
-                        $(`.like-count${post_id}`).text(res + ' ' + 'отметок "Нравится"')
-                    },
-                    error: function(response) {
-                        console.log('error', response)
-                    }
-                })
-
-            })
-        });
-    </script>
-{% endblock scripts %}

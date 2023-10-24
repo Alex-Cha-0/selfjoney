@@ -69,15 +69,16 @@ def like_unlike_post(request):
             post_obj.liked.add(profile)
 
         like, created = Like.objects.get_or_create(user=profile, post_id=post_id)
-
+        print(f"{like},/ like-value: {like.value}/ {created}")
         if not created:
             if like.value == 'Like':
                 like.value = 'Unlike'
+                like.save()
             else:
                 like.value = 'Like'
+                like.save()
         else:
             like.value = 'Like'
-
             post_obj.save()
             like.save()
 
