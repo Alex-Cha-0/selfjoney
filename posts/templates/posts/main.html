@@ -138,20 +138,34 @@
                 <div class="card-body p-0 ">
                     <img class="img-fluid rounded-1" src="{{ obj.image.url }}" alt="">
                     <div class="d-flex post-actions">
-                        <form class="like-form" action="{% url 'posts:like-post-view' %}" method="post" id='{{obj.id}}'>
+                        <form class="like-form" action="{% url 'posts:like-post-view' %}" method="post"
+                              id='{{ obj.id }}'>
                             {% csrf_token %}
                             <input type="hidden" name="post_id" value="{{ obj.id }}">
-                            <button class="like-btn{{obj.id}} btn-reaction btn text-center btn-link" type="submit" aria-label="Отправить реакцию «нравится»">
+                            <button id="reactionBtn{{ obj.id }}" class="like-btn{{ obj.id }} btn-reaction btn text-center btn-link" type="submit"
+                                    aria-label="Отправить реакцию «нравится»">
                                 {% if profile not in obj.liked.all %}
-                                 <i></i>
-                                 <span>Like</span>
+                                    <i></i>
+                                    <span>Like</span>
                                 {% else %}
-                                 <i class="press"></i>
-                                 <span class="press">Unlike</span>
+                                    <i class="press"></i>
+                                    <span class="press">Unlike</span>
                                 {% endif %}
                             </button>
+                            <!-- Show users who like it -->
+                            <div id="userLikedList{{ obj.id }}" class="hide">
+                                {% for user in obj.liked.all %}
+                                    <a class="link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                                       href=""><img class="img-xs rounded-circle" src="{{ user.avatar.url }}" alt="">
+                                        {{ user.get_full_name }}
+                                    </a>
+                                {% endfor %}
+                                <!-- End show users who like it -->
+                            </div>
                         </form>
-                        <button class="cmt_btn btn btn-link-secondary  btn-sm" type="button" id="cmt_btn-{{ obj.id }}" title="Показать комментарии">
+
+                        <button class="cmt_btn btn btn-link-secondary  btn-sm" type="button" id="cmt_btn-{{ obj.id }}"
+                                title="Показать комментарии">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                  fill="none"
                                  stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -176,7 +190,7 @@
                     </div>
                 </div>
                 <div class="card-footer border-top-0  border-bottom p-0">
-                    <span class="like-count{{obj.id}}">{{ obj.num_likes }} отметок "Нравится"</span>
+                    <span class="like-count{{ obj.id }}">{{ obj.num_likes }} отметок "Нравится"</span>
                     <div class="">
                         <span> {{ obj.num_comments }} comments</span>
                     </div>
@@ -188,7 +202,9 @@
                     </p>
                     <p class="mb-3 tx-14">{{ obj.content }}</p>
                     <!-- Comment Form -->
-                 <button class="cmt_btn btn btn-link btn-small p-0 border-0 link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Показать комментарии</button>
+                    <button class="cmt_btn btn btn-link btn-small p-0 border-0 link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
+                        Показать комментарии
+                    </button>
                     <div class="comment-box">
                         {% if obj.comment_set.all %}
                             {% for c in obj.comment_set.all %}

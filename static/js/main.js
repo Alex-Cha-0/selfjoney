@@ -49,10 +49,6 @@ $(document).ready(function () {
         const likes = $(`.like-count${post_id}`).text()
         const trimCount = parseInt(likes)
 
-        console.log(trim)
-        console.log(likes)
-        console.log(trimCount)
-
         $.ajax({
             type: 'POST',
             url: url,
@@ -82,4 +78,40 @@ $(document).ready(function () {
         })
 
     })
+});
+
+$(document).ready(function () {
+    $(".hide").hide();
+    let timer;
+    let post_id;
+
+    $('.like-form').hover(
+        function () {
+            post_id = $(this).attr('id');
+            console.log(post_id);
+            function debounce() {
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    $(`#userLikedList${post_id}`).fadeOut('fast');
+                }, 450);
+            }
+
+
+            $(`#reactionBtn${post_id}`).hover(function () {
+                // hover over
+                $(`#userLikedList${post_id}`).show();
+                clearTimeout(timer);
+            }, function () {
+                // hover out
+                debounce();
+            });
+            $(".hide").mouseenter(function () {
+                clearTimeout(timer);
+            });
+            $(".hide").mouseleave(function () {
+                debounce();
+            });
+        },
+    );
+
 });
