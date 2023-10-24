@@ -42,42 +42,48 @@
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                                 {% if request.user == obj.author.user %}
-                                    <button class="dropdown-item d-flex align-items-center">
-                                        <svg fill="#000000" width="24px" height="24px" viewBox="0 0 24 24" id="update"
-                                             data-name="Line Color" xmlns="http://www.w3.org/2000/svg"
-                                             class="feather feather-meh icon-sm mr-2">
-                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
-                                               stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <path id="primary" d="M4,12A8,8,0,0,1,18.93,8"
-                                                      style="fill: none; stroke: #000000; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
-                                                <path id="primary-2" data-name="primary" d="M20,12A8,8,0,0,1,5.07,16"
-                                                      style="fill: none; stroke: #000000; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
-                                                <polyline id="secondary" points="14 8 19 8 19 3"
-                                                          style="fill: none; stroke: #2ca9bc; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></polyline>
-                                                <polyline id="secondary-2" data-name="secondary"
-                                                          points="10 16 5 16 5 21"
-                                                          style="fill: none; stroke: #2ca9bc; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></polyline>
-                                            </g>
-                                        </svg>
-                                        <span>Update</span></button>
-                                    <button class="dropdown-item d-flex align-items-center">
-                                        <svg width="24px" height="24px" viewBox="-102.4 -102.4 1228.80 1228.80"
-                                             class="feather feather-meh icon-sm mr-2" version="1.1"
-                                             xmlns="http://www.w3.org/2000/svg"
-                                             fill="#000000">
-                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
-                                               stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <path d="M779.5 1002.7h-535c-64.3 0-116.5-52.3-116.5-116.5V170.7h768v715.5c0 64.2-52.3 116.5-116.5 116.5zM213.3 256v630.1c0 17.2 14 31.2 31.2 31.2h534.9c17.2 0 31.2-14 31.2-31.2V256H213.3z"
-                                                      fill="#3688FF"></path>
-                                                <path d="M917.3 256H106.7C83.1 256 64 236.9 64 213.3s19.1-42.7 42.7-42.7h810.7c23.6 0 42.7 19.1 42.7 42.7S940.9 256 917.3 256zM618.7 128H405.3c-23.6 0-42.7-19.1-42.7-42.7s19.1-42.7 42.7-42.7h213.3c23.6 0 42.7 19.1 42.7 42.7S642.2 128 618.7 128zM405.3 725.3c-23.6 0-42.7-19.1-42.7-42.7v-256c0-23.6 19.1-42.7 42.7-42.7S448 403 448 426.6v256c0 23.6-19.1 42.7-42.7 42.7zM618.7 725.3c-23.6 0-42.7-19.1-42.7-42.7v-256c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v256c-0.1 23.6-19.2 42.7-42.7 42.7z"
-                                                      fill="#5F6379"></path>
-                                            </g>
-                                        </svg>
-                                        <span>Delete</span></button>
+                                    <a href="{% url 'posts:post-update' obj.pk %}">
+                                        <button class="dropdown-item d-flex align-items-center">
+                                            <svg fill="#000000" width="24px" height="24px" viewBox="0 0 24 24"
+                                                 id="update"
+                                                 data-name="Line Color" xmlns="http://www.w3.org/2000/svg"
+                                                 class="feather feather-meh icon-sm mr-2">
+                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                   stroke-linejoin="round"></g>
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <path id="primary" d="M4,12A8,8,0,0,1,18.93,8"
+                                                          style="fill: none; stroke: #000000; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
+                                                    <path id="primary-2" data-name="primary"
+                                                          d="M20,12A8,8,0,0,1,5.07,16"
+                                                          style="fill: none; stroke: #000000; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
+                                                    <polyline id="secondary" points="14 8 19 8 19 3"
+                                                              style="fill: none; stroke: #2ca9bc; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></polyline>
+                                                    <polyline id="secondary-2" data-name="secondary"
+                                                              points="10 16 5 16 5 21"
+                                                              style="fill: none; stroke: #2ca9bc; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></polyline>
+                                                </g>
+                                            </svg>
+                                            <span>Update</span></button>
+                                    </a>
+                                    <a href="{% url 'posts:post-delete' obj.pk %}">
+                                        <button class="dropdown-item d-flex align-items-center">
+                                            <svg width="24px" height="24px" viewBox="-102.4 -102.4 1228.80 1228.80"
+                                                 class="feather feather-meh icon-sm mr-2" version="1.1"
+                                                 xmlns="http://www.w3.org/2000/svg"
+                                                 fill="#000000">
+                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                   stroke-linejoin="round"></g>
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <path d="M779.5 1002.7h-535c-64.3 0-116.5-52.3-116.5-116.5V170.7h768v715.5c0 64.2-52.3 116.5-116.5 116.5zM213.3 256v630.1c0 17.2 14 31.2 31.2 31.2h534.9c17.2 0 31.2-14 31.2-31.2V256H213.3z"
+                                                          fill="#3688FF"></path>
+                                                    <path d="M917.3 256H106.7C83.1 256 64 236.9 64 213.3s19.1-42.7 42.7-42.7h810.7c23.6 0 42.7 19.1 42.7 42.7S940.9 256 917.3 256zM618.7 128H405.3c-23.6 0-42.7-19.1-42.7-42.7s19.1-42.7 42.7-42.7h213.3c23.6 0 42.7 19.1 42.7 42.7S642.2 128 618.7 128zM405.3 725.3c-23.6 0-42.7-19.1-42.7-42.7v-256c0-23.6 19.1-42.7 42.7-42.7S448 403 448 426.6v256c0 23.6-19.1 42.7-42.7 42.7zM618.7 725.3c-23.6 0-42.7-19.1-42.7-42.7v-256c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v256c-0.1 23.6-19.2 42.7-42.7 42.7z"
+                                                          fill="#5F6379"></path>
+                                                </g>
+                                            </svg>
+                                            <span>Delete</span></button>
+                                    </a>
                                 {% endif %}
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -133,30 +139,23 @@
                     <img class="img-fluid rounded-1" src="{{ obj.image.url }}" alt="">
 
                     <div class="d-flex post-actions">
-                        <form action="{% url 'posts:like-post-view' %}" method="post">
+                        <form class="like-form" action="{% url 'posts:like-post-view' %}" method="post" id='{{obj.id}}'>
                             {% csrf_token %}
                             <input type="hidden" name="post_id" value="{{ obj.id }}">
-                            <button class="btn btn-link-secondary btn-sm pl-0" type="submit">
+                            <button class="like-btn{{obj.id}} btn-reaction btn text-center btn-link" type="submit" aria-label="Отправить реакцию «нравится»">
                                 {% if profile not in obj.liked.all %}
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         fill="none"
-                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                         stroke-linejoin="round"
-                                         class="feather feather-heart icon-md">
-                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                    </svg>
+
+                                 <i></i>
+                                 <span>Like</span>
+
                                 {% else %}
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         fill="#F44336"
-                                         stroke="#F44336" stroke-width="2" stroke-linecap="round"
-                                         stroke-linejoin="round"
-                                         class="feather feather-heart icon-md">
-                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                    </svg>
+
+                                 <i class="press"></i>
+                                 <span class="press">Unlike</span>
                                 {% endif %}
                             </button>
                         </form>
-                        <button class="cmt_btn btn btn-link-secondary  btn-sm" type="button">
+                        <button class="cmt_btn btn btn-link-secondary  btn-sm" type="button" id="cmt_btn-{{ obj.id }}" title="Показать комментарии">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                  fill="none"
                                  stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -181,7 +180,11 @@
                     </div>
                 </div>
                 <div class="card-footer border-top-0  border-bottom p-0">
-                    <span>{{ obj.num_likes }} отметок "Нравится"</span>
+                    <span class="like-count{{obj.id}}">{{ obj.num_likes }} отметок "Нравится"</span>
+                    <div class="">
+                        <span> {{ obj.num_comments }} comments</span>
+                    </div>
+
                     <p>
                         <a class="fw-semibold mb-0 link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
                            href="{% url 'profiles:my-profile-view' profile_id=obj.author.user.id %}">{{ obj.author.get_full_name }}</a>
@@ -235,20 +238,66 @@
 {% endblock %}
 
 {% block scripts %}
-    <script>
-        $(document).ready(function () {
+     <script>
+         $( document ).ready(function() {
             let display = false
             $(".cmt_btn").click(function () {
-                if (display === false) {
-                    console.log("show")
+                if (display===false) {
                     $(this).next(".comment-box").show("slow");
-                    display = true
+                    display=true
                 } else {
-                    console.log("hide")
                     $(this).next(".comment-box").hide("slow");
-                    display = false
+                    display=false
                 }
             });
+
+            $('.like-form').submit(function(e){
+                e.preventDefault()
+
+                const post_id = $(this).attr('id')
+
+                const likeText = $(`.like-btn${post_id} > span`).text()
+                const trim = $.trim(likeText)
+
+                const url = $(this).attr('action')
+
+                let res;
+                const likes = $(`.like-count${post_id}`).text()
+                const trimCount = parseInt(likes)
+
+                console.log(trim)
+                console.log(likes)
+                console.log(trimCount)
+
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: {
+                        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                        'post_id':post_id,
+                    },
+                    success: function(response) {
+                        if(trim === 'Like') {
+                            $(`.like-btn${post_id} > i`).addClass("press");
+                            $(`.like-btn${post_id} > span`).addClass("press").text("Unlike");
+
+
+                            res = trimCount + 1
+                        } else {
+                            $(`.like-btn${post_id} > i`).removeClass("press");
+                            $(`.like-btn${post_id} > span`).removeClass("press").text("Like");
+
+                            res = trimCount - 1
+                        }
+
+                        $(`.like-count${post_id}`).text(res + ' ' + 'отметок "Нравится"')
+                    },
+                    error: function(response) {
+                        console.log('error', response)
+                    }
+                })
+
+            })
         });
     </script>
 {% endblock scripts %}

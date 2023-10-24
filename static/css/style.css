@@ -1,14 +1,18 @@
-body{
-    background-color: #f8f8f8; !important;
-    }
+body {
+    background-color: #f8f8f8;
+!important;
+}
+
 .nav {
     border-radius: 0px !important;
     padding: 10px 0 10px 0 !important;
 
 }
+
 .mb-7 {
     margin-bottom: 7px !important;
 }
+
 .profile-page .profile-header {
     box-shadow: 0 0 10px 0 rgba(183, 192, 206, 0.2);
     border: 1px solid #f2f4f9;
@@ -161,14 +165,17 @@ body{
     margin-left: 0;
     margin-right: 17px;
 }
+
 .img-xs {
     width: 40px;
     height: 40px;
 }
+
 .rounded-circle {
     border-radius: 50% !important;
     object-fit: cover;
 }
+
 img {
     vertical-align: middle;
     border-style: none;
@@ -177,6 +184,7 @@ img {
 .card-header:first-child {
     border-radius: 0 0 0 0;
 }
+
 .card-header {
     padding: 0.875rem 1.5rem;
     margin-bottom: 0;
@@ -187,6 +195,7 @@ img {
 .card-footer:last-child {
     border-radius: 0 0 0 0;
 }
+
 .card-footer {
     padding: 0.875rem 1.5rem;
     background-color: rgba(0, 0, 0, 0);
@@ -203,9 +212,11 @@ img {
     -moz-box-shadow: 0 0 10px 0 rgba(183, 192, 206, 0.2);
     -ms-box-shadow: 0 0 10px 0 rgba(183, 192, 206, 0.2);
 }
+
 .rounded {
     border-radius: 0.25rem !important;
 }
+
 .card {
     position: relative;
     display: flex;
@@ -225,9 +236,11 @@ img {
     padding-bottom: 1rem;
     text-align: center;
 }
+
 .account-settings .user-profile .user-avatar {
     margin: 0 0 1rem 0;
 }
+
 .account-settings .user-profile .user-avatar img {
     width: 90px;
     height: 90px;
@@ -235,26 +248,32 @@ img {
     -moz-border-radius: 100px;
     border-radius: 100px;
 }
+
 .account-settings .user-profile h5.user-name {
     margin: 0 0 0.5rem 0;
 }
+
 .account-settings .user-profile h6.user-email {
     margin: 0;
     font-size: 0.8rem;
     font-weight: 400;
     color: #9fa8b9;
 }
+
 .account-settings .about {
     margin: 2rem 0 0 0;
     text-align: center;
 }
+
 .account-settings .about h5 {
     margin: 0 0 15px 0;
     color: #007ae1;
 }
+
 .account-settings .about p {
     font-size: 0.825rem;
 }
+
 .form-control {
     border: 1px solid #cfd1d8;
     -webkit-border-radius: 2px;
@@ -276,4 +295,52 @@ img {
 
 .comment-box {
     display: none;
+}
+
+
+.btn-reaction i {
+    cursor: pointer;
+    /*padding:10px 12px 8px;*/
+    background: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    /*margin:0 0 15px;*/
+    color: #aaa;
+    transition: .2s;
+}
+
+.btn-reaction i:hover {
+    color: #666;
+}
+
+.btn-reaction i:before {
+    font-family: fontawesome;
+    content: '\f004';
+    font-style: normal;
+    font-size: 22px;
+}
+
+.btn-reaction span {
+    position: absolute;
+    bottom: 70px;
+    left: 0;
+    right: 0;
+    /*visibility: hidden;*/
+    transition: .6s;
+    z-index: -2;
+    font-size: 2px;
+    color: transparent;
+    font-weight: 400;
+}
+
+.btn-reaction i.press {
+    animation: size .4s;
+    color: #e23b3b;
+}
+
+.btn-reaction span.press {
+    bottom: 120px;
+    font-size: 14px;
+    visibility: visible;
+    animation: fade 1s;
 }
