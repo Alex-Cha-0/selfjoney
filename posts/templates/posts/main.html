@@ -135,9 +135,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body p-0 ">
+                <div class="card-body p-0 bg-black bg-gradient rounded">
                     <img class="img-fluid rounded-1" src="{{ obj.image.url }}" alt="">
-                    <div class="d-flex post-actions">
+                </div>
+
+                <div class="card-footer border-top-0  border-bottom p-0">
+                <div class="d-flex post-actions">
                         <form class="like-form" action="{% url 'posts:like-post-view' %}" method="post"
                               id='{{ obj.id }}'>
                             {% csrf_token %}
@@ -188,8 +191,6 @@
                         </button>
 
                     </div>
-                </div>
-                <div class="card-footer border-top-0  border-bottom p-0">
                     <span class="like-count{{ obj.id }}">{{ obj.num_likes }} отметок "Нравится"</span>
                     <div class="">
                         <span> {{ obj.num_comments }} comments</span>
