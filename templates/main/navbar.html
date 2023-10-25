@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" id="navbar_top">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top" id="navbar_top">
     <a class="navbar-brand" href="{% url 'profiles:my-profile-view' profile_id=request.user.id %}">SelfJourney</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,7 +59,7 @@
                 <li class="nav-item">
                     <a href="{{ path_to_my_profile }}"
                        class="{% if request.path == path_to_my_profile %}nav-link active{% endif %} nav-link">
-                        <img src={{ picture.url }} class="">
+                        <img src="{{ picture.url }}" class="img-xs rounded-circle">
                         {{ request.user }}
                     </a>
                 </li>
@@ -77,70 +78,3 @@
             </ul>
     </div>
 </nav>
-{#<nav class="navbar navbar-expand-lg navbar-light bg-light">#}
-{##}
-{#    <a href="{{ path_to_home }}" class="navbar-brand {% if request.path == path_to_home %}active{% endif %} item">#}
-{#        <h3>SelfJourney</h3>#}
-{#    </a>#}
-{#    <div class="collapse navbar-collapse" id="navbarSupportedContent">#}
-{#        <ul class="navbar-nav mr-auto">#}
-{#            <li class="nav-item active">#}
-{#                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>#}
-{#            </li>#}
-{#            <li class="nav-item">#}
-{#            {% if request.user.is_authenticated %}#}
-{#                <a href="{{ path_to_posts }}" class="{% if request.path == path_to_posts %}active{% endif %} item">#}
-{#                    Board#}
-{#                </a>#}
-{#            {% endif %}#}
-{#            </li>#}
-{##}
-{#            <div class="right menu">#}
-{#                {% if request.user.is_authenticated %}#}
-{#                    <div class="item">#}
-{#                        <div class="ui floating dropdown icon button teal"> Friends#}
-{#                            <i class="dropdown icon"></i>#}
-{#                            <div class="menu">#}
-{#                                <a href="{{ path_to_all_profiles }}"#}
-{#                                   class="{% if request.path == path_to_all_profiles %}active{% endif %} item">#}
-{#                                    All Profiles#}
-{#                                </a>#}
-{#                                <a href="{{ path_to_invites }}"#}
-{#                                   class="{% if request.path == path_to_invites %}active{% endif %} item">#}
-{#                                    Send Invites#}
-{#                                </a>#}
-{#                                <a href="{{ path_to_my_invites }}"#}
-{#                                   class="{% if request.path == path_to_my_invites %}active{% endif %} item">#}
-{#                                    Received Invites &nbsp;#}
-{#                                    <div class="ui purple horizontal label">{{ invites_num }}</div>#}
-{#                                </a>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="item">#}
-{#                        <form action="" method="GET">#}
-{#                            <div class="ui action left icon input">#}
-{#                                <input class="prompt" type="text" name='q' placeholder="name of a friend...">#}
-{#                                <i class="search icon"></i>#}
-{#                                <button type='submit' class="ui button">Search</button>#}
-{#                            </div>#}
-{#                        </form>#}
-{#                    </div>#}
-{##}
-{#                    <a href="{{ path_to_my_profile }}"#}
-{#                       class="{% if request.path == path_to_my_profile %}active{% endif %} item">#}
-{#                        <img src={{ picture.url }} class="ui avatar image">&nbsp;#}
-{#                        {{ request.user }}#}
-{#                    </a>#}
-{##}
-{#                    <a href="" class="ui item">#}
-{#                        Logout#}
-{#                    </a>#}
-{#                {% else %}#}
-{#                    <a href="" class="ui item">#}
-{#                        Login#}
-{#                    </a>#}
-{#                {% endif %}#}
-{#            </div>#}
-{#    </div>#}
-{#</nav>#}

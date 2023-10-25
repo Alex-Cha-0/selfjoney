@@ -3,8 +3,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href=
-"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href=
+            "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -27,11 +28,11 @@
     <title>SelfJoney - {% block title %} {% endblock %}</title>
 </head>
 <body>
-
-<div class="container mt-1 p-1">
-    {% include 'main/navbar.html' %}
-    {% block messages %} {% endblock %}
-    {% block content %} {% endblock content %}
+<div class="container-fluid overflow-hidden">
+{#<div class="container mt-1 p-1">#}
+{#{% include 'main/navbar.html' %}#}
+{% block messages %} {% endblock %}
+{% block content %} {% endblock content %}
 </div>
 
 {% block scripts %}
