@@ -110,3 +110,9 @@ class PostUpdateView(UpdateView):
         else:
             form.add_error(None, "You need to be the author of the post in order to update it")
             return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs.get('pk')
+        context['post'] = Post.objects.get(pk=pk)
+        return context

@@ -5,261 +5,281 @@
 {% endblock %}
 
 {% block content %}
+    <div class="container-fluid overflow-hidden">
+        <div class="row vh-100 overflow-auto">
+            {% include 'main/sidebar.html' %}
+            <div class="col-sm-9 col-md-9 p-sm-5">
+                <div class="d-flex justify-content-center flex-column align-items-center mt-4 row gx-0">
+                    {% for obj in qs %}
+                        <div class="card border-0" style="width: 35rem;">
+                            <div class="card-header border-0 p-0">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <img class="img-xs rounded-circle"
+                                             src="{{ obj.author.avatar.url }}"
+                                             alt="">
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <div class="d-flex mt-0 align-items-end"><a
+                                                href="{% url 'profiles:my-profile-view' profile_id=obj.author.user.id %}"
+                                                class="mb-0 fw-semibold link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover">{{ obj.author.get_full_name }}</a>
+                                            <div class="ml-1">&#183;</div>
+                                            <small
+                                                    class="tx-11 text-muted mb-0 ml-1">{{ obj.updated|timesince|upto:',' }}&#46;</small>
+                                        </div>
+                                        <p class="">{{ obj.author.country }}</p>
+                                    </div>
 
-    <div class="row vh-100 overflow-auto">
-    {% include 'main/sidebar.html' %}
-    <div class="col-sm-9 col-md-9 p-sm-5">
-        <div class="d-flex justify-content-center flex-column align-items-center mt-4 row gx-0">
-            {% for obj in qs %}
-                <div class="card border-0" style="width: 35rem;">
-                    <div class="card-header border-0 p-0">
-                        <div class="d-flex">
-                            <div class="flex-shrink-0">
-                                <img class="img-xs rounded-circle"
-                                     src="{{ obj.author.avatar.url }}"
-                                     alt="">
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                                <div class="d-flex mt-0 align-items-end"><a
-                                        href="{% url 'profiles:my-profile-view' profile_id=obj.author.user.id %}"
-                                        class="mb-0 fw-semibold link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover">{{ obj.author.get_full_name }}</a>
-                                    <div class="ml-1">&#183;</div>
-                                    <small
-                                            class="tx-11 text-muted mb-0 ml-1">{{ obj.updated|timesince|upto:',' }}&#46;</small>
+                                    <div class="dropdown">
+                                        <button class="btn p-0" type="button" id="dropdownMenuButton2"
+                                                data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                 viewBox="0 0 24 24"
+                                                 fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round"
+                                                 stroke-linejoin="round"
+                                                 class="feather feather-more-horizontal icon-lg pb-3px">
+                                                <circle cx="12" cy="12" r="1"></circle>
+                                                <circle cx="19" cy="12" r="1"></circle>
+                                                <circle cx="5" cy="12" r="1"></circle>
+                                            </svg>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                            {% if request.user == obj.author.user %}
+                                                <a href="{% url 'posts:post-update' obj.pk %}">
+                                                    <button class="dropdown-item d-flex align-items-center">
+                                                        <svg fill="#000000" width="24px" height="24px"
+                                                             viewBox="0 0 24 24"
+                                                             id="update"
+                                                             data-name="Line Color" xmlns="http://www.w3.org/2000/svg"
+                                                             class="feather feather-meh icon-sm mr-2">
+                                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                               stroke-linejoin="round"></g>
+                                                            <g id="SVGRepo_iconCarrier">
+                                                                <path id="primary" d="M4,12A8,8,0,0,1,18.93,8"
+                                                                      style="fill: none; stroke: #000000; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
+                                                                <path id="primary-2" data-name="primary"
+                                                                      d="M20,12A8,8,0,0,1,5.07,16"
+                                                                      style="fill: none; stroke: #000000; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
+                                                                <polyline id="secondary" points="14 8 19 8 19 3"
+                                                                          style="fill: none; stroke: #2ca9bc; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></polyline>
+                                                                <polyline id="secondary-2" data-name="secondary"
+                                                                          points="10 16 5 16 5 21"
+                                                                          style="fill: none; stroke: #2ca9bc; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></polyline>
+                                                            </g>
+                                                        </svg>
+                                                        <span>Update</span></button>
+                                                </a>
+                                                <a href="{% url 'posts:post-delete' obj.pk %}">
+                                                    <button class="dropdown-item d-flex align-items-center">
+                                                        <svg width="24px" height="24px"
+                                                             viewBox="-102.4 -102.4 1228.80 1228.80"
+                                                             class="feather feather-meh icon-sm mr-2" version="1.1"
+                                                             xmlns="http://www.w3.org/2000/svg"
+                                                             fill="#000000">
+                                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                               stroke-linejoin="round"></g>
+                                                            <g id="SVGRepo_iconCarrier">
+                                                                <path d="M779.5 1002.7h-535c-64.3 0-116.5-52.3-116.5-116.5V170.7h768v715.5c0 64.2-52.3 116.5-116.5 116.5zM213.3 256v630.1c0 17.2 14 31.2 31.2 31.2h534.9c17.2 0 31.2-14 31.2-31.2V256H213.3z"
+                                                                      fill="#3688FF"></path>
+                                                                <path d="M917.3 256H106.7C83.1 256 64 236.9 64 213.3s19.1-42.7 42.7-42.7h810.7c23.6 0 42.7 19.1 42.7 42.7S940.9 256 917.3 256zM618.7 128H405.3c-23.6 0-42.7-19.1-42.7-42.7s19.1-42.7 42.7-42.7h213.3c23.6 0 42.7 19.1 42.7 42.7S642.2 128 618.7 128zM405.3 725.3c-23.6 0-42.7-19.1-42.7-42.7v-256c0-23.6 19.1-42.7 42.7-42.7S448 403 448 426.6v256c0 23.6-19.1 42.7-42.7 42.7zM618.7 725.3c-23.6 0-42.7-19.1-42.7-42.7v-256c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v256c-0.1 23.6-19.2 42.7-42.7 42.7z"
+                                                                      fill="#5F6379"></path>
+                                                            </g>
+                                                        </svg>
+                                                        <span>Delete</span></button>
+                                                </a>
+                                            {% endif %}
+                                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24"
+                                                     fill="none" stroke="currentColor" stroke-width="2"
+                                                     stroke-linecap="round"
+                                                     stroke-linejoin="round" class="feather feather-meh icon-sm mr-2">
+                                                    <circle cx="12" cy="12" r="10"></circle>
+                                                    <line x1="8" y1="15" x2="16" y2="15"></line>
+                                                    <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                                    <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                                                </svg>
+                                                <span class="">Unfollow</span></a>
+                                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24"
+                                                     fill="none" stroke="currentColor" stroke-width="2"
+                                                     stroke-linecap="round"
+                                                     stroke-linejoin="round"
+                                                     class="feather feather-corner-right-up icon-sm mr-2">
+                                                    <polyline points="10 9 15 4 20 9"></polyline>
+                                                    <path d="M4 20h7a4 4 0 0 0 4-4V4"></path>
+                                                </svg>
+                                                <span class="">Go to post</span></a>
+                                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24"
+                                                     fill="none" stroke="currentColor" stroke-width="2"
+                                                     stroke-linecap="round"
+                                                     stroke-linejoin="round"
+                                                     class="feather feather-share-2 icon-sm mr-2">
+                                                    <circle cx="18" cy="5" r="3"></circle>
+                                                    <circle cx="6" cy="12" r="3"></circle>
+                                                    <circle cx="18" cy="19" r="3"></circle>
+                                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                                </svg>
+                                                <span class="">Share</span></a>
+                                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24"
+                                                     fill="none" stroke="currentColor" stroke-width="2"
+                                                     stroke-linecap="round"
+                                                     stroke-linejoin="round" class="feather feather-copy icon-sm mr-2">
+                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                </svg>
+                                                <span class="">Copy link</span></a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <p class="">{{ obj.author.country }}</p>
                             </div>
 
-                            <div class="dropdown">
-                                <button class="btn p-0" type="button" id="dropdownMenuButton2"
-                                        data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                         viewBox="0 0 24 24"
-                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                         stroke-linejoin="round"
-                                         class="feather feather-more-horizontal icon-lg pb-3px">
-                                        <circle cx="12" cy="12" r="1"></circle>
-                                        <circle cx="19" cy="12" r="1"></circle>
-                                        <circle cx="5" cy="12" r="1"></circle>
-                                    </svg>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                    {% if request.user == obj.author.user %}
-                                        <a href="{% url 'posts:post-update' obj.pk %}">
-                                            <button class="dropdown-item d-flex align-items-center">
-                                                <svg fill="#000000" width="24px" height="24px" viewBox="0 0 24 24"
-                                                     id="update"
-                                                     data-name="Line Color" xmlns="http://www.w3.org/2000/svg"
-                                                     class="feather feather-meh icon-sm mr-2">
-                                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
-                                                       stroke-linejoin="round"></g>
-                                                    <g id="SVGRepo_iconCarrier">
-                                                        <path id="primary" d="M4,12A8,8,0,0,1,18.93,8"
-                                                              style="fill: none; stroke: #000000; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
-                                                        <path id="primary-2" data-name="primary"
-                                                              d="M20,12A8,8,0,0,1,5.07,16"
-                                                              style="fill: none; stroke: #000000; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
-                                                        <polyline id="secondary" points="14 8 19 8 19 3"
-                                                                  style="fill: none; stroke: #2ca9bc; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></polyline>
-                                                        <polyline id="secondary-2" data-name="secondary"
-                                                                  points="10 16 5 16 5 21"
-                                                                  style="fill: none; stroke: #2ca9bc; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></polyline>
-                                                    </g>
-                                                </svg>
-                                                <span>Update</span></button>
-                                        </a>
-                                        <a href="{% url 'posts:post-delete' obj.pk %}">
-                                            <button class="dropdown-item d-flex align-items-center">
-                                                <svg width="24px" height="24px" viewBox="-102.4 -102.4 1228.80 1228.80"
-                                                     class="feather feather-meh icon-sm mr-2" version="1.1"
-                                                     xmlns="http://www.w3.org/2000/svg"
-                                                     fill="#000000">
-                                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
-                                                       stroke-linejoin="round"></g>
-                                                    <g id="SVGRepo_iconCarrier">
-                                                        <path d="M779.5 1002.7h-535c-64.3 0-116.5-52.3-116.5-116.5V170.7h768v715.5c0 64.2-52.3 116.5-116.5 116.5zM213.3 256v630.1c0 17.2 14 31.2 31.2 31.2h534.9c17.2 0 31.2-14 31.2-31.2V256H213.3z"
-                                                              fill="#3688FF"></path>
-                                                        <path d="M917.3 256H106.7C83.1 256 64 236.9 64 213.3s19.1-42.7 42.7-42.7h810.7c23.6 0 42.7 19.1 42.7 42.7S940.9 256 917.3 256zM618.7 128H405.3c-23.6 0-42.7-19.1-42.7-42.7s19.1-42.7 42.7-42.7h213.3c23.6 0 42.7 19.1 42.7 42.7S642.2 128 618.7 128zM405.3 725.3c-23.6 0-42.7-19.1-42.7-42.7v-256c0-23.6 19.1-42.7 42.7-42.7S448 403 448 426.6v256c0 23.6-19.1 42.7-42.7 42.7zM618.7 725.3c-23.6 0-42.7-19.1-42.7-42.7v-256c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v256c-0.1 23.6-19.2 42.7-42.7 42.7z"
-                                                              fill="#5F6379"></path>
-                                                    </g>
-                                                </svg>
-                                                <span>Delete</span></button>
-                                        </a>
-                                    {% endif %}
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                            <div class="card-body p-0 bg-black bg-gradient rounded">
+                                {% if obj.image %}
+                                    <a href="{{ obj.image.url }}" data-fancybox="gallery"
+                                       data-caption="Image for post #{{ obj.id }}">
+                                        <img class="img-fluid img-card-body rounded-1" src="{{ obj.image.url }}" alt="">
+                                    </a>
+                                {% endif %}
+
+
+                            </div>
+
+                            <div class="card-footer border-top-0  border-bottom p-0">
+                                <div class="d-flex post-actions">
+                                    <form class="like-form" action="{% url 'posts:like-post-view' %}" method="post"
+                                          id='{{ obj.id }}'>
+                                        {% csrf_token %}
+                                        <input type="hidden" name="post_id" value="{{ obj.id }}">
+                                        <button id="reactionBtn{{ obj.id }}"
+                                                class="like-btn{{ obj.id }} btn-reaction btn text-center btn-link"
+                                                type="submit"
+                                                aria-label="Отправить реакцию «нравится»">
+                                            {% if profile not in obj.liked.all %}
+                                                <i></i>
+                                                <span>Like</span>
+                                            {% else %}
+                                                <i class="press"></i>
+                                                <span class="press">Unlike</span>
+                                            {% endif %}
+                                        </button>
+                                        <!-- Show users who like it -->
+                                        <div id="userLikedList{{ obj.id }}" class="hide">
+                                            {% for user in obj.liked.all %}
+                                                <a class="link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                                                   href=""><img class="img-xs rounded-circle"
+                                                                src="{{ user.avatar.url }}"
+                                                                alt="">
+                                                    {{ user.get_full_name }}
+                                                </a>
+                                            {% endfor %}
+                                            <!-- End show users who like it -->
+                                        </div>
+                                    </form>
+
+                                    <button class="cmt_btn btn btn-link-secondary  btn-sm" type="button"
+                                            id="cmt_btn-{{ obj.id }}"
+                                            title="Показать комментарии">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                              viewBox="0 0 24 24"
-                                             fill="none" stroke="currentColor" stroke-width="2"
-                                             stroke-linecap="round"
-                                             stroke-linejoin="round" class="feather feather-meh icon-sm mr-2">
-                                            <circle cx="12" cy="12" r="10"></circle>
-                                            <line x1="8" y1="15" x2="16" y2="15"></line>
-                                            <line x1="9" y1="9" x2="9.01" y2="9"></line>
-                                            <line x1="15" y1="9" x2="15.01" y2="9"></line>
-                                        </svg>
-                                        <span class="">Unfollow</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24"
-                                             fill="none" stroke="currentColor" stroke-width="2"
-                                             stroke-linecap="round"
+                                             fill="none"
+                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                              stroke-linejoin="round"
-                                             class="feather feather-corner-right-up icon-sm mr-2">
-                                            <polyline points="10 9 15 4 20 9"></polyline>
-                                            <path d="M4 20h7a4 4 0 0 0 4-4V4"></path>
+                                             class="feather feather-message-square icon-md">
+                                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                                         </svg>
-                                        <span class="">Go to post</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
+
+                                    </button>
+                                    <button class="btn btn-link-secondary  btn-sm" type="button">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                              viewBox="0 0 24 24"
-                                             fill="none" stroke="currentColor" stroke-width="2"
-                                             stroke-linecap="round"
-                                             stroke-linejoin="round" class="feather feather-share-2 icon-sm mr-2">
-                                            <circle cx="18" cy="5" r="3"></circle>
-                                            <circle cx="6" cy="12" r="3"></circle>
-                                            <circle cx="18" cy="19" r="3"></circle>
-                                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                             fill="none"
+                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                             stroke-linejoin="round"
+                                             class="feather feather-share icon-md">
+                                            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                                            <polyline points="16 6 12 2 8 6"></polyline>
+                                            <line x1="12" y1="2" x2="12" y2="15"></line>
                                         </svg>
-                                        <span class="">Share</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24"
-                                             fill="none" stroke="currentColor" stroke-width="2"
-                                             stroke-linecap="round"
-                                             stroke-linejoin="round" class="feather feather-copy icon-sm mr-2">
-                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                        </svg>
-                                        <span class="">Copy link</span></a>
+                                    </button>
+
                                 </div>
+                                <span class="like-count{{ obj.id }}">{{ obj.num_likes }} отметок "Нравится"</span>
+                                <div class="">
+                                    <span> {{ obj.num_comments }} comments</span>
+                                </div>
+
+                                <p>
+                                    <a class="fw-semibold mb-0 link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                                       href="{% url 'profiles:my-profile-view' profile_id=obj.author.user.id %}">{{ obj.author.get_full_name }}</a>
+                                    <span>{{ obj.header }}</span>
+                                </p>
+                                <p class="mb-3 tx-14">{{ obj.content }}</p>
+                                <!-- Comment Form -->
+                                <button class="cmt_btn btn btn-link btn-small p-0 border-0 link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
+                                    Показать комментарии
+                                </button>
+                                <div class="comment-box">
+                                    {% if obj.comment_set.all %}
+                                        {% for c in obj.comment_set.all %}
+                                            <p>{{ c.body }}</p>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                    {{ c_form }}
+                                    <input type="hidden" name="post_id" value="{{ obj.id }}">
+                                    <button class="btn btn-link btn-sm mt-1 border-0" name="submit_c_form"
+                                            type="submit">
+                                        <svg height="30px" width="30px" version="1.1" id="Layer_1"
+                                             xmlns="http://www.w3.org/2000/svg"
+                                             xmlns:xlink="http://www.w3.org/1999/xlink"
+                                             viewBox="-55.46 -55.46 615.10 615.10" xml:space="preserve" fill="#bababa"
+                                             stroke="#bababa"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g
+                                                    id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                    stroke-linejoin="round"></g>
+                                            <g
+                                                    id="SVGRepo_iconCarrier"> <g transform="translate(1 1)"> <polygon
+                                                    style="fill:#E0E0E0;"
+                                                    points="192.049,263.97 175.262,398.266 247.446,342.869 "></polygon>
+                                                <path style="fill:#F0F0F0;"
+                                                      d="M230.659,330.279c-5.875-10.072-4.197-21.823-11.751-31.056 c-5.875-6.715-13.43-10.911-20.144-16.787c-0.839,1.679-2.518,2.518-5.036,3.357c-0.839,0-1.679,0-2.518,0 c1.679,10.911,2.518,21.823-0.839,33.574c-0.839,2.518-2.518,4.197-4.197,5.036v0.839c-5.036,10.072-3.357,21.823-7.554,32.734 c-1.679,5.875-4.197,11.751-5.875,17.626l57.915-44.485C231.498,331.118,231.498,331.118,230.659,330.279"></path>
+                                                <polygon style="fill:#CCCCCC;"
+                                                         points="192.049,263.97 7.393,203.538 495.052,70.921 309.557,431.839 "></polygon>
+                                                <polygon style="fill:#E2E3E5;"
+                                                         points="183.656,263.97 7.393,205.216 469.033,79.315 292.77,406.659 "></polygon>
+                                                <g> <path style="fill:#B6B6B6;"
+                                                          d="M309.557,440.233c-2.518,0-5.036-1.679-6.715-3.357l-115.83-166.19L4.875,211.092 C1.518,210.252-1,206.895-1,202.698c0-3.357,2.518-6.715,5.875-7.554L492.534,62.528c3.357-0.839,6.715,0,8.393,2.518 c1.679,2.518,2.518,5.875,0.839,9.233L316.272,435.197C315.433,438.554,312.915,440.233,309.557,440.233L309.557,440.233z M36.771,204.377l157.797,51.2c1.679,0.839,3.357,1.679,4.197,3.357l109.115,156.118L478.266,84.351L36.771,204.377z"></path>
+                                                    <path style="fill:#B6B6B6;"
+                                                          d="M192.049,272.364c-2.518,0-5.875-1.679-6.715-4.197c-2.518-4.197-1.679-9.233,2.518-11.751 L490.016,63.367c4.197-2.518,9.233-1.679,11.751,2.518c2.518,4.197,1.679,9.233-2.518,11.751L197.085,270.685 C195.407,271.525,193.728,272.364,192.049,272.364z"></path>
+                                                    <path style="fill:#B6B6B6;"
+                                                          d="M175.262,406.659c-1.679,0-2.518,0-4.197-0.839c-2.518-1.679-4.197-5.036-4.197-8.393 l16.787-134.295c0.839-3.357,3.357-5.875,6.715-6.715c3.357-0.839,6.715,0.839,9.233,3.357L255,338.672 c2.518,3.357,1.679,8.393-1.679,11.751l-72.184,55.397C178.62,405.82,176.941,406.659,175.262,406.659z M197.925,286.633 L186.174,379.8l49.521-37.771L197.925,286.633z"></path> </g> </g> </g></svg>
+                                    </button>
+                                </form>
+                                <!-- End comment Form -->
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body p-0 bg-black bg-gradient rounded">
-                        <img class="img-fluid img-card-body rounded-1" src="{{ obj.image.url }}" alt="">
-                    </div>
-
-                    <div class="card-footer border-top-0  border-bottom p-0">
-                        <div class="d-flex post-actions">
-                            <form class="like-form" action="{% url 'posts:like-post-view' %}" method="post"
-                                  id='{{ obj.id }}'>
-                                {% csrf_token %}
-                                <input type="hidden" name="post_id" value="{{ obj.id }}">
-                                <button id="reactionBtn{{ obj.id }}"
-                                        class="like-btn{{ obj.id }} btn-reaction btn text-center btn-link" type="submit"
-                                        aria-label="Отправить реакцию «нравится»">
-                                    {% if profile not in obj.liked.all %}
-                                        <i></i>
-                                        <span>Like</span>
-                                    {% else %}
-                                        <i class="press"></i>
-                                        <span class="press">Unlike</span>
-                                    {% endif %}
-                                </button>
-                                <!-- Show users who like it -->
-                                <div id="userLikedList{{ obj.id }}" class="hide">
-                                    {% for user in obj.liked.all %}
-                                        <a class="link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
-                                           href=""><img class="img-xs rounded-circle" src="{{ user.avatar.url }}"
-                                                        alt="">
-                                            {{ user.get_full_name }}
-                                        </a>
-                                    {% endfor %}
-                                    <!-- End show users who like it -->
-                                </div>
-                            </form>
-
-                            <button class="cmt_btn btn btn-link-secondary  btn-sm" type="button"
-                                    id="cmt_btn-{{ obj.id }}"
-                                    title="Показать комментарии">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none"
-                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round"
-                                     class="feather feather-message-square icon-md">
-                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                                </svg>
-
-                            </button>
-                            <button class="btn btn-link-secondary  btn-sm" type="button">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none"
-                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round"
-                                     class="feather feather-share icon-md">
-                                    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
-                                    <polyline points="16 6 12 2 8 6"></polyline>
-                                    <line x1="12" y1="2" x2="12" y2="15"></line>
-                                </svg>
-                            </button>
-
-                        </div>
-                        <span class="like-count{{ obj.id }}">{{ obj.num_likes }} отметок "Нравится"</span>
-                        <div class="">
-                            <span> {{ obj.num_comments }} comments</span>
-                        </div>
-
-                        <p>
-                            <a class="fw-semibold mb-0 link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
-                               href="{% url 'profiles:my-profile-view' profile_id=obj.author.user.id %}">{{ obj.author.get_full_name }}</a>
-                            <span>{{ obj.header }}</span>
-                        </p>
-                        <p class="mb-3 tx-14">{{ obj.content }}</p>
-                        <!-- Comment Form -->
-                        <button class="cmt_btn btn btn-link btn-small p-0 border-0 link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
-                            Показать комментарии
-                        </button>
-                        <div class="comment-box">
-                            {% if obj.comment_set.all %}
-                                {% for c in obj.comment_set.all %}
-                                    <p>{{ c.body }}</p>
-                                {% endfor %}
-                            {% endif %}
-                        </div>
-                        <form action="" method="post">
-                            {% csrf_token %}
-                            {{ c_form }}
-                            <input type="hidden" name="post_id" value="{{ obj.id }}">
-                            <button class="btn btn-link btn-sm mt-1 border-0" name="submit_c_form" type="submit">
-                                <svg height="30px" width="30px" version="1.1" id="Layer_1"
-                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                     viewBox="-55.46 -55.46 615.10 615.10" xml:space="preserve" fill="#bababa"
-                                     stroke="#bababa"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                    <g
-                                            id="SVGRepo_tracerCarrier" stroke-linecap="round"
-                                            stroke-linejoin="round"></g>
-                                    <g
-                                            id="SVGRepo_iconCarrier"> <g transform="translate(1 1)"> <polygon
-                                            style="fill:#E0E0E0;"
-                                            points="192.049,263.97 175.262,398.266 247.446,342.869 "></polygon>
-                                        <path style="fill:#F0F0F0;"
-                                              d="M230.659,330.279c-5.875-10.072-4.197-21.823-11.751-31.056 c-5.875-6.715-13.43-10.911-20.144-16.787c-0.839,1.679-2.518,2.518-5.036,3.357c-0.839,0-1.679,0-2.518,0 c1.679,10.911,2.518,21.823-0.839,33.574c-0.839,2.518-2.518,4.197-4.197,5.036v0.839c-5.036,10.072-3.357,21.823-7.554,32.734 c-1.679,5.875-4.197,11.751-5.875,17.626l57.915-44.485C231.498,331.118,231.498,331.118,230.659,330.279"></path>
-                                        <polygon style="fill:#CCCCCC;"
-                                                 points="192.049,263.97 7.393,203.538 495.052,70.921 309.557,431.839 "></polygon>
-                                        <polygon style="fill:#E2E3E5;"
-                                                 points="183.656,263.97 7.393,205.216 469.033,79.315 292.77,406.659 "></polygon>
-                                        <g> <path style="fill:#B6B6B6;"
-                                                  d="M309.557,440.233c-2.518,0-5.036-1.679-6.715-3.357l-115.83-166.19L4.875,211.092 C1.518,210.252-1,206.895-1,202.698c0-3.357,2.518-6.715,5.875-7.554L492.534,62.528c3.357-0.839,6.715,0,8.393,2.518 c1.679,2.518,2.518,5.875,0.839,9.233L316.272,435.197C315.433,438.554,312.915,440.233,309.557,440.233L309.557,440.233z M36.771,204.377l157.797,51.2c1.679,0.839,3.357,1.679,4.197,3.357l109.115,156.118L478.266,84.351L36.771,204.377z"></path>
-                                            <path style="fill:#B6B6B6;"
-                                                  d="M192.049,272.364c-2.518,0-5.875-1.679-6.715-4.197c-2.518-4.197-1.679-9.233,2.518-11.751 L490.016,63.367c4.197-2.518,9.233-1.679,11.751,2.518c2.518,4.197,1.679,9.233-2.518,11.751L197.085,270.685 C195.407,271.525,193.728,272.364,192.049,272.364z"></path>
-                                            <path style="fill:#B6B6B6;"
-                                                  d="M175.262,406.659c-1.679,0-2.518,0-4.197-0.839c-2.518-1.679-4.197-5.036-4.197-8.393 l16.787-134.295c0.839-3.357,3.357-5.875,6.715-6.715c3.357-0.839,6.715,0.839,9.233,3.357L255,338.672 c2.518,3.357,1.679,8.393-1.679,11.751l-72.184,55.397C178.62,405.82,176.941,406.659,175.262,406.659z M197.925,286.633 L186.174,379.8l49.521-37.771L197.925,286.633z"></path> </g> </g> </g></svg>
-                            </button>
-                        </form>
-                        <!-- End comment Form -->
-                    </div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
+            </div>
+
         </div>
     </div>
 
+{% endblock %}
+{% block scripts %}
 
 
 {% endblock %}
-</div>
-
-

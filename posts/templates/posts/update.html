@@ -5,13 +5,41 @@
 {% endblock %}
 
 {% block content %}
-    <div class="text-center">
-        <h3 class="h3">Update post</h3>
-    <form action="" method="post" class="form-control" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-outline-primary btn-small">Update</button>
-    </form>
+    <div class="container-fluid overflow-hidden">
+
+        <div class="row vh-100 overflow-auto">
+            {% include 'main/sidebar.html' %}
+            <div class="col-sm-9 col-md-9 p-sm-5">
+                <h3 class="h3">Update post</h3>
+                <div class="d-flex justify-content-center flex-column align-items-center mt-4 row gx-0">
+                    <div class="card border-0 p-2" style="width: 35rem;">
+                        <div class="card-body p-0 bg-black bg-gradient rounded">
+                            {% if post.image %}
+                                <img class="img-fluid img-card-body rounded-1" src="{{ post.image.url }}" alt="">
+                            {% endif %}
+                        </div>
+                        <div class="card-footer border-top-0  border-bottom p-0">
+                            <form action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button type="submit" class="btn btn-outline-primary btn-small">Update</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
+
+
+
+
+
+
+
 
 {% endblock %}

@@ -22,18 +22,22 @@
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-    {#        <link rel="stylesheet" type="text/css"#}
-    {#              href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css">#}
-    {#        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>#}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"
+            integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"
+          integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
     <title>SelfJoney - {% block title %} {% endblock %}</title>
 </head>
 <body>
-<div class="container-fluid overflow-hidden">
+{#<div class="container-fluid overflow-hidden">#}
 {#<div class="container mt-1 p-1">#}
 {#{% include 'main/navbar.html' %}#}
 {% block messages %} {% endblock %}
 {% block content %} {% endblock content %}
-</div>
+{#</div>#}
 
 {% block scripts %}
 {% endblock scripts %}
@@ -41,5 +45,6 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+
 </body>
 </html>

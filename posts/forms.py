@@ -3,11 +3,18 @@ from django import forms
 
 
 class PostModelForm(forms.ModelForm):
-    content = forms.CharField(widget=forms.Textarea(attrs={'rows': 2}))
+    content = forms.CharField(widget=forms.Textarea(attrs={"class": "form-control", 'rows': 2}))
 
     class Meta:
         model = Post
         fields = ('header', 'content', 'image')
+        widgets = {
+            'header': forms.TextInput(attrs={"class": "form-control"}),
+            'content': forms.Textarea(attrs={
+                "class": "form-control",
+                "rows": 5
+            }),
+        }
 
 
 class CommentModelForm(forms.ModelForm):
