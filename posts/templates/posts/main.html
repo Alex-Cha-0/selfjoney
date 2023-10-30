@@ -22,7 +22,7 @@
                                     <div class="flex-grow-1 ms-3">
                                         <div class="d-flex mt-0 align-items-end"><a
                                                 href="{% url 'profiles:my-profile-view' profile_id=obj.author.user.id %}"
-                                                class="mb-0 fw-semibold link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover">{{ obj.author.get_full_name }}</a>
+                                                class="mb-0 fw-semibold link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover">{{ obj.author.get_full_name }}</a>
                                             <div class="ml-1">&#183;</div>
                                             <small
                                                     class="tx-11 text-muted mb-0 ml-1">{{ obj.updated|timesince|upto:',' }}&#46;</small>
@@ -148,7 +148,7 @@
                                 {% if obj.image %}
                                     <a href="{{ obj.image.url }}" data-fancybox="gallery"
                                        data-caption="Image for post #{{ obj.id }}">
-                                        <img class="img-fluid img-card-body rounded-1" src="{{ obj.image.url }}" alt="">
+                                        <img class="img-card-body" src="{{ obj.image.url }}" alt="">
                                     </a>
                                 {% endif %}
 
@@ -176,7 +176,7 @@
                                         <!-- Show users who like it -->
                                         <div id="userLikedList{{ obj.id }}" class="hide">
                                             {% for user in obj.liked.all %}
-                                                <a class="link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                                                <a class="link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
                                                    href=""><img class="img-xs rounded-circle"
                                                                 src="{{ user.avatar.url }}"
                                                                 alt="">
@@ -220,13 +220,13 @@
                                 </div>
 
                                 <p>
-                                    <a class="fw-semibold mb-0 link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                                    <a class="fw-semibold mb-0 link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
                                        href="{% url 'profiles:my-profile-view' profile_id=obj.author.user.id %}">{{ obj.author.get_full_name }}</a>
                                     <span>{{ obj.header }}</span>
                                 </p>
                                 <p class="mb-3 tx-14">{{ obj.content }}</p>
                                 <!-- Comment Form -->
-                                <button class="cmt_btn btn btn-link btn-small p-0 border-0 link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
+                                <button class="cmt_btn btn btn-link btn-small p-0 border-0 link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
                                     Показать комментарии
                                 </button>
                                 <div class="comment-box">
